@@ -7,23 +7,39 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class CarManager : ICarService //public
+    public class CarManager : ICarService
     {
-
-        ICarDal _carDal;
-
-        public CarManager(ICarDal carDal)
+        ICarDal _car;
+        public CarManager(ICarDal car)
         {
-            _carDal = carDal;
+            _car = car;
+        }
+
+        public void Add(Car car)
+        {
+            if (car.DailyPrice > 0)
+            {
+                _car.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Fiyat 0'dan büyük olmalidir.");
+            }
+        }
+
+        public void Delete(Car car)
+        {
+            _car.Delete(car);
         }
 
         public List<Car> GetAll()
         {
-            // is kodlari
-            // yetkisi var mi?
-            // tüm ürüleri listeleyecek metot
-            return _carDal.GetAll();
+            return _car.GetAll();
+        }
+
+        public void Update(Car car)
+        {
+            _car.Update(car);
         }
     }
 }
-

@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -16,11 +17,11 @@ namespace DataAccess.Concrete.InMemory
         {
             // Veri tabanindan geldigini varsayalim. olmasi gereken
             _cars = new List<Car> {
-             new Car {CarId =1, ColorId =1, Description = "Mercedes",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
-             new Car {CarId =2, ColorId =1, Description = "BMW",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
-             new Car {CarId =3, ColorId =2, Description = "Opel",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
-             new Car {CarId =4, ColorId =2, Description = "Audi",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
-             new Car {CarId =5, ColorId =2, Description = "Porsche",  BrandId=15, DailyPrice=15,  ModelYear = 2020}
+             new Car {CarId =1, ColorId =1, Descriptions = "Mercedes",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
+             new Car {CarId =2, ColorId =1, Descriptions = "BMW",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
+             new Car {CarId =3, ColorId =2, Descriptions = "Opel",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
+             new Car {CarId =4, ColorId =2, Descriptions = "Audi",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
+             new Car {CarId =5, ColorId =2, Descriptions = "Porsche",  BrandId=15, DailyPrice=15,  ModelYear = 2020}
             };
         }
 
@@ -28,14 +29,23 @@ namespace DataAccess.Concrete.InMemory
         public void Add(Car car)
         {
             Console.WriteLine("Eklendi");
+            _cars.Add(car);
         }
 
         public void Delete(Car car)
         {
             Console.WriteLine("Silindi");
+
+            Car CarToDelete = _cars.SingleOrDefault(Car => Car.CarId == Car.CarId);
+            _cars.Remove(CarToDelete);
         }
 
-        public List<Car> GetAll()
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter=null)
         {
             Console.WriteLine("Liste geldi");
             return _cars;
@@ -51,6 +61,12 @@ namespace DataAccess.Concrete.InMemory
         public void Update(Car car)
         {
             Console.WriteLine("Güncellendi");
+            Car CarToUpdate = _cars.SingleOrDefault(Car => Car.CarId== car.CarId);
+            CarToUpdate.BrandId = car.BrandId;
+            CarToUpdate.ColorId = car.ColorId;
+            CarToUpdate.DailyPrice = car.DailyPrice;
+            CarToUpdate.ModelYear = car.ModelYear;
+            CarToUpdate.Descriptions = car.Descriptions;
         }
     }
 }
