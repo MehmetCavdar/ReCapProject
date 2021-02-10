@@ -40,7 +40,7 @@ namespace ConsoleUI
             foreach (var car in carManager.GetByDailyPrice(min, max))
             {
                 a = a + 1;
-                Console.WriteLine("aranan Fiyat Araligina uygun araclar");
+                Console.WriteLine("Günlük Kiralama Bedeli  " + min +"-"+ max + "  arasinda olan araclar");
                 Console.WriteLine(a + ".ürün:" + car.ModelYear + " -" + car.Descriptions + "  ---> " + car.DailyPrice + " TL");
             }
             Console.WriteLine("-------------------------");
