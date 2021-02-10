@@ -9,16 +9,16 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
-        IBrandDal _brand;
+        IBrandDal _brandDal;
         public BrandManager(IBrandDal brand)
         {
-            _brand = brand;
+            _brandDal = brand;
         }
         public void Add(Brand brand)
         {
             if (brand.BrandName.Length >= 2)
             {
-                _brand.Add(brand);
+                _brandDal.Add(brand);
             }
             else
             {
@@ -28,22 +28,22 @@ namespace Business.Concrete
 
         public void Delete(Brand brand)
         {
-            _brand.Delete(brand);
+            _brandDal.Delete(brand);
         }
 
         public List<Brand> GetAll()
         {
-            return _brand.GetAll();
+            return _brandDal.GetAll();
         }
 
         public Brand GetCarsByBrandId(int brandId)
         {
-            return _brand.Get(b => b.BrandId == brandId);
+            return _brandDal.Get(b => b.BrandId == brandId);
         }
 
         public void Update(Brand brand)
         {
-            _brand.Update(brand);
+            _brandDal.Update(brand);
         }
     }
 }

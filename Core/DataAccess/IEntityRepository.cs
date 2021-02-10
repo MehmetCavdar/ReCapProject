@@ -1,10 +1,11 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities; // IEntity Core icine alindigi icin  IEntity interface using komutunu ekledik
+// using Entities.Abstract;  // sildik
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     public interface IEntityRepository<T> where T : class, IEntity, new() //buraya dikkat
     {

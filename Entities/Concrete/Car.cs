@@ -1,4 +1,5 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
+// using Entities.Abstract; sildik
 using System;
 using System.Collections.Generic;
 using System.Text;

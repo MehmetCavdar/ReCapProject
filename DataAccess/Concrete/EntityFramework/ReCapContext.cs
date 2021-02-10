@@ -12,8 +12,8 @@ namespace DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ReCapDb;Trusted_Connection=true");
         }
-        public DbSet<Car> Cars.sql { get; set; }
-        public DbSet<Color> Colors.sql { get; set; }
-        public DbSet<Brand> Brands.sql { get; set; }
+        public DbSet<Car> Cars { get; set; }  //.sql uzantisi yazmaya gerek yok sanirim
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Brand> Brands { get; set; }
     }
 }
