@@ -22,8 +22,7 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            _carDal.Add(car);
-
+  
             if (car.DailyPrice <= 0)
             {
                return new ErrorResult(Messages.CarDailyPriceInvalid);
