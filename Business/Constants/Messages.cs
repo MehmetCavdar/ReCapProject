@@ -29,7 +29,6 @@ namespace Business.Constants
 
         public static string BrandListed = "Marka listelendi";
 
-
         public static string CarsListedByBrandId = "Araclar BrandId'ye göre listelendi";
 
         public static string ColorAdded = "Renk eklendi";
@@ -45,5 +44,16 @@ namespace Business.Constants
         public static string BrandInvalid = " Marka ismini doğru girdiğinizden emin olun(min 2 karakter)";
 
         public static string DetailedCarListed = "Ayrintili listeleme yapildi";
+
+        public static string RentalAdded = "Rental Added";
+
+        public static string RentalAddedError = "Aracın kiraya verilebilmesi için önce teslim edilmesi gerekir.";
+
+        public static string CustomerAdded = "Müsteri eklendi";
+
+        public static string CustomerDeleted = "Müsteri silindi";
+
+        public static string CustomerUpdated = "Müsteri güncellendi";
+
     }
 }

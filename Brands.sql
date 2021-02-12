@@ -1,1 +1,0 @@
-﻿Insert into Brands(BrandId,BrandName) values (1,'Audi'),(2,'BMW'),(3,'Hyundai'),(4,'Mitsubishi'),(5,'Nissan'),(6,'Mazda'),(7,'Porsche');

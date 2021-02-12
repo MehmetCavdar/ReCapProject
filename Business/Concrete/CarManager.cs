@@ -27,7 +27,10 @@ namespace Business.Concrete
             {
                return new ErrorResult(Messages.CarDailyPriceInvalid);
             }
-            return new SuccessResult(Messages.CarAdded);
+            {
+                _carDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
+            }
         }
 
         public IResult Delete(Car car)
@@ -69,5 +72,16 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.DetailedCarListed); // newlemeyi unutme
         }
+
+        public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == brandId), Messages.CarsListedByBrandId);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId), Messages.CarsListedByColorId);
+        }
+
     }
 }

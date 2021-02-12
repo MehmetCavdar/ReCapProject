@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.InMemory
             // Veri tabanindan geldigini varsayalim. olmasi gereken
             _cars = new List<Car> {
              new Car {CarId =1, ColorId =1, Descriptions = "Mercedes",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
-             new Car {CarId =2, ColorId =1, Descriptions = "BMW",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
+             new Car {CarId =2, ColorId =1, Descriptions= "BMW",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
              new Car {CarId =3, ColorId =2, Descriptions = "Opel",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
              new Car {CarId =4, ColorId =2, Descriptions = "Audi",  BrandId=15, DailyPrice=15,  ModelYear = 2020},
              new Car {CarId =5, ColorId =2, Descriptions = "Porsche",  BrandId=15, DailyPrice=15,  ModelYear = 2020}

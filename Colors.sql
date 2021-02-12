@@ -1,1 +1,0 @@
-﻿Insert into Colors(ColorId,ColorName) values (1,'Black'),(2,'White'),(3,'Silver'),(4,'Blue'),(5,'Red'),(6,'Brown'),(7,'Green');

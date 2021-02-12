@@ -37,7 +37,7 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                return context.Set<TEntity>().SingleOrDefault(filter);
+                return context.Set<TEntity>().SingleOrDefault(filter);    // SingleOrDefault ile FirstorDefault ayni
             }
         }
 
@@ -45,7 +45,7 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                return filter == null
+                return filter == null                   // == yerine is yAZILABILIR
                ? context.Set<TEntity>().ToList()
                : context.Set<TEntity>().Where(filter).ToList();
 
