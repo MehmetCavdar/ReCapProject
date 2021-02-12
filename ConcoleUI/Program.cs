@@ -11,7 +11,9 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
 
-            TestRentalSuccess();
+
+
+            TestRentalSuccess(1);
             TestRentalManager();
 
             //CarTest();
@@ -31,22 +33,19 @@ namespace ConsoleUI
 
 
 
-        private static void TestRentalSuccess()
+        private static void TestRentalSuccess( int arac)
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.CheckReturnDate(2);
+            var result = rentalManager.CheckReturnDate(arac);
 
             RentalManager rentalManager2 = new RentalManager(new EfRentalDal());
-            var result2 = rentalManager2.GetRentalDetailsDto(2);
+            var result2 = rentalManager2.GetRentalDetailsDto(arac);
 
+            Console.WriteLine("talep tarihi:" + DateTime.Now);
+            Console.WriteLine("talep edilen Arac Id:" + arac);
 
             if (result.Success == true)
             {
-                Console.WriteLine("-------------------------ekleme");
-                foreach (var rental in result2.Data)
-                {
-                    Console.WriteLine("aracin dönüs tarihi:" + rental.ReturnDate);
-                }
                 Console.WriteLine(result.Message);
             }
             else

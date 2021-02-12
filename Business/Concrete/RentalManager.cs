@@ -40,14 +40,14 @@ namespace Business.Concrete
         {
             var result = _rentalDal.GetRentalDetails(x => x.CarId == carId);
 
-            Console.WriteLine("result.Count:" + result.Count);
+            //  if (result.Count > 0 && result.Count(x => x.ReturnDate == null) > 0)
+            //{
+            //    return new ErrorResult(Messages.RentalAddedError);
+            //}
+            //return new SuccessResult(Messages.RentalAdded);
 
-            Console.WriteLine(" result.Count(x => x.ReturnDate == null):" + result.Count(x => x.ReturnDate == null));
 
-
-            Console.WriteLine("(result.Count > 0 && result.Count(x => x.ReturnDate == null) > 0):" + (result.Count > 0 && result.Count(x => x.ReturnDate == null) > 0));
-
-            if (result.Count > 0 && result.Count(x => x.ReturnDate == null) > 0)
+            if (result.Count > 0 && result.Count(x => x.ReturnDate > DateTime.Now) > 0)
             {
                 return new ErrorResult(Messages.RentalAddedError);
             }
