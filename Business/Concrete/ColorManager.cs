@@ -4,6 +4,8 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Results;  // eklendi 10.02 10.ders
+using Business.Constants;      // eklendi 10.02 10 ders
 
 namespace Business.Concrete
 {
@@ -15,29 +17,33 @@ namespace Business.Concrete
         {
             _colorDal = color;
         }
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
             _colorDal.Add(color);
+            return new SuccessResult(Messages.ColorAdded);
         }
 
-        public void Delete(Color color)
+        public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
-        public List<Color> GetAll()
-        {
-            return _colorDal.GetAll();
-        }
 
-        public Color GetCarsByColorId(int colorId)
-        {
-            return _colorDal.Get(c => c.ColorId == colorId);
-        }
-
-        public void Update(Color color)
+        public IResult Update(Color color)
         {
             _colorDal.Update(color);
+            return new SuccessResult(Messages.ColorUpdated);
+        }
+
+        public IDataResult<List<Color>> GetAll()
+        {
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
+        }
+
+        public IDataResult<Color> GetCarsByColorId(int colorId)
+        {
+              return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == colorId));
         }
     }
 }

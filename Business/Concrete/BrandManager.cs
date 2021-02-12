@@ -4,6 +4,8 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Results;  // eklendi 10.02 10.ders
+using Business.Constants;      // eklendi 10.02 10 ders
 
 namespace Business.Concrete
 {
@@ -14,36 +16,40 @@ namespace Business.Concrete
         {
             _brandDal = brand;
         }
-        public void Add(Brand brand)
+
+
+        public IResult Add(Brand brand)
         {
-            if (brand.BrandName.Length >= 2)
+            if (brand.BrandName.Length < 2)
             {
-                _brandDal.Add(brand);
+                return new ErrorResult(Messages.BrandInvalid);
             }
             else
             {
-                Console.WriteLine("Marka ismini doğru girdiğinizden emin oluç (min 2 karakter)");
+             return new SuccessResult(Messages.BrandAdded);              
             }
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
-        public List<Brand> GetAll()
-        {
-            return _brandDal.GetAll();
-        }
-
-        public Brand GetCarsByBrandId(int brandId)
-        {
-            return _brandDal.Get(b => b.BrandId == brandId);
-        }
-
-        public void Update(Brand brand)
+        public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
+            return new SuccessResult(Messages.BrandUpdated);
+        }
+
+        public IDataResult<List<Brand>> GetAll()
+        {
+            return new SuccessDataResult<List<Brand>> (_brandDal.GetAll());
+        }
+
+        public IDataResult<Brand>GetCarsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == brandId)); 
         }
     }
 }

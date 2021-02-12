@@ -2,15 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Results;  // 10 .ders eklendi
 
 namespace Business.Abstract
 {
     public interface IBrandService
     {
-        Brand GetCarsByBrandId(int brandId);
-        List<Brand> GetAll();
-        void Add(Brand brand);
-        void Update(Brand brand);
-        void Delete(Brand brand);
+        IDataResult<Brand> GetCarsByBrandId(int brandId);
+        IDataResult<List<Brand>> GetAll();
+        IResult Add(Brand brand);
+        IResult Update(Brand brand);
+        IResult Delete(Brand brand);
     }
 }

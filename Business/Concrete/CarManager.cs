@@ -5,53 +5,70 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Results;  // eklendi 10.02 10.ders
+using Business.Constants;      // eklendi 10.02 10 ders
 
 namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        ICarDal _carDal;
-        public CarManager(ICarDal car)
+         ICarDal _carDal;
+
+        public CarManager(ICarDal carDal)   // Dikkat  
         {
-            _carDal = car;
+            _carDal =carDal;
         }
 
-        public void Add(Car car)
+
+        public IResult Add(Car car)
         {
-            if (car.DailyPrice > 0)
+            _carDal.Add(car);
+
+            if (car.DailyPrice <= 0)
             {
-                _carDal.Add(car);
+               return new ErrorResult(Messages.CarDailyPriceInvalid);
             }
-            else
-            {
-                Console.WriteLine("Fiyat 0'dan büyük olmalidir.");
-            }
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetAll()
-        {
-            return _carDal.GetAll();
-        }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
         }
 
-        public List<Car> GetByDailyPrice(decimal min, decimal max)
+
+
+        public IDataResult<List<Car>> GetAll()
+        {
+
+            if (DateTime.Now.Hour == 22)  // saat kismi 22 ise hata döndür (denemk icin)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
+
+            // yetkisi var mi?
+            // tüm ürüleri listeleyecek metot
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed); //10.02.2021 
+
+        }
+
+        public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
         { 
             // sadece secilen fiyat araligindaki ürünler listelenecek
-            return _carDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max);
+            return  new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());//,Messages.DetailedCarListed); // newlemeyi unutme
         }
     }
 }
