@@ -44,12 +44,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>> (_brandDal.GetAll());
+            return new SuccessDataResult<List<Brand>> (_brandDal.GetAll(),Messages.BrandListed);
         }
 
         public IDataResult<Brand>GetCarsByBrandId(int brandId)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == brandId)); 
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == brandId), Messages.CarsListedByBrandId); 
         }
     }
 }

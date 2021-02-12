@@ -7,7 +7,7 @@ namespace Core.Utilities.Results
     public class Result :IResult   // public ve Iresult ile inherit
     {
 
-        public Result(bool success, string message) //: this(success)   //bu durumda aşağıdaki ayni isimdeki tek parametreli constructor da çalışır 
+        public Result(bool success, string message): this(success)   //bu durumda aşağıdaki ayni isimdeki tek parametreli constructor da çalışır 
         {
             Message = message;  // set edilemez demistik get'ler constructor icinde set edilebilir
                                 //Success = success;  // buradan silebiliriz- cünkü assagida zaten calisiyor. gerek yok        }

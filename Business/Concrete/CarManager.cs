@@ -62,12 +62,12 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
         { 
             // sadece secilen fiyat araligindaki ürünler listelenecek
-            return  new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
+            return  new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max), Messages.CarsListedByDailyPrice);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());//,Messages.DetailedCarListed); // newlemeyi unutme
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.DetailedCarListed); // newlemeyi unutme
         }
     }
 }
