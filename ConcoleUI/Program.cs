@@ -41,10 +41,9 @@ namespace ConsoleUI
             RentalManager rentalManager2 = new RentalManager(new EfRentalDal());
             var result2 = rentalManager2.GetRentalDetailsDto(arac);
 
-            Console.WriteLine("talep tarihi:" + DateTime.Now);
             Console.WriteLine("talep edilen Arac Id:" + arac);
 
-            if (result.Success == true)
+            if (result.Success == false)
             {
                 Console.WriteLine(result.Message);
             }
