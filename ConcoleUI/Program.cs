@@ -13,8 +13,10 @@ namespace ConsoleUI
 
 
 
-            TestRentalSuccess(1);
-            TestRentalManager();
+            //TestRentalSuccess(2);
+            //TestRentalManager();
+
+            TestGetByBrandId(9);
 
             //CarTest();
 
@@ -38,8 +40,8 @@ namespace ConsoleUI
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             var result = rentalManager.CheckReturnDate(arac);
 
-            RentalManager rentalManager2 = new RentalManager(new EfRentalDal());
-            var result2 = rentalManager2.GetRentalDetailsDto(arac);
+            //RentalManager rentalManager2 = new RentalManager(new EfRentalDal());
+            //var result2 = rentalManager2.GetRentalDetailsDto(arac);
 
             Console.WriteLine("talep edilen Arac Id:" + arac);
 
@@ -84,6 +86,31 @@ namespace ConsoleUI
         }
 
 
+
+
+
+        private static void TestGetByBrandId(int id)
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            var result = carManager.GetCarsByBrandId(id);
+
+            if (result.Success == true)
+            {
+                Console.WriteLine("-------------------------");
+                Console.WriteLine("DTO ile Joint Tablo");
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
+                }
+                Console.WriteLine("-------------------------");
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine("-------------------------");
+                Console.WriteLine(result.Message);
+            }
+        }
 
 
         private static void CarTest()

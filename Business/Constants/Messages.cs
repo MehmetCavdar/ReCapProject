@@ -15,7 +15,9 @@ namespace Business.Constants
 
         public static string CarDailyPriceInvalid= "Ürün fiyati gecersiz";
 
-        public static string MaintenanceTime = "Site Bakimda";
+        public static string CarCanNotListedByColorId = "ColorId kayitli degil";
+
+        public static string CarsListedByColorId = "Araclar ColorId'ye göre listelendi";
 
         public static string CarListed="Car Listelendi";
 
@@ -29,7 +31,11 @@ namespace Business.Constants
 
         public static string BrandListed = "Marka listelendi";
 
+        public static string BrandInvalid = " Marka ismini doğru girdiğinizden emin olun(min 2 karakter)";
+
         public static string CarsListedByBrandId = "Araclar BrandId'ye göre listelendi";
+
+        public static string CarCanNotListedByBrandId = "BrandId kayitli degil";
 
         public static string ColorAdded = "Renk eklendi";
 
@@ -39,9 +45,6 @@ namespace Business.Constants
 
         public static string ColorListed = "Renk Listelendi";
 
-        public static string CarsListedByColorId = "Araclar ColorId'ye göre listelendi";
-
-        public static string BrandInvalid = " Marka ismini doğru girdiğinizden emin olun(min 2 karakter)";
 
         public static string DetailedCarListed = "Ayrintili listeleme yapildi";
 
@@ -54,6 +57,16 @@ namespace Business.Constants
         public static string CustomerDeleted = "Müsteri silindi";
 
         public static string CustomerUpdated = "Müsteri güncellendi";
+
+        public static string MaintenanceTime = "Site Bakimda";
+
+        public static string UserAdded = "Kullanici eklendi";
+
+        public static string UserDeleted = "Kullanici silindi";
+
+        public static string UserUpdated  = "Kullanici güncellendi";
+
+
 
     }
 }

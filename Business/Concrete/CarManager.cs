@@ -27,10 +27,10 @@ namespace Business.Concrete
             {
                return new ErrorResult(Messages.CarDailyPriceInvalid);
             }
-            {
+            
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
-            }
+           
         }
 
         public IResult Delete(Car car)
@@ -74,13 +74,25 @@ namespace Business.Concrete
         }
 
         public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId)
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == brandId), Messages.CarsListedByBrandId);
+        {       
+           var result = _carDal.GetCarDetails(c => c.BrandId == brandId);
+
+           if (result.Count>0)
+           {
+                return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == brandId), Messages.CarsListedByBrandId);
+           }     
+            return new ErrorDataResult<List<CarDetailDto>>(Messages.CarCanNotListedByBrandId);       
         }
 
         public IDataResult<List<CarDetailDto>> GetCarsByColorId(int colorId)
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId), Messages.CarsListedByColorId);
+        { 
+           var result = _carDal.GetCarDetails(c => c.ColorId == colorId);
+
+           if (result.Count>0)
+           {
+                return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId), Messages.CarsListedByColorId);
+           }     
+            return new ErrorDataResult<List<CarDetailDto>>(Messages.CarCanNotListedByColorId);       
         }
 
     }
