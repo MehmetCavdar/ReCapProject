@@ -7,13 +7,13 @@ namespace Business.Constants
     public static class Messages  
     {
 
-        public static string CarAdded = "Ürün eklendi";
+        public static string CarAdded = "Arac eklendi";
 
-        public static string CarDeleted = "Ürün silindi";
+        public static string CarDeleted = "Arac silindi";
 
-        public static string CarUpdated = "Ürün güncellendi";
+        public static string CarUpdated = "Arac güncellendi";
 
-        public static string CarDailyPriceInvalid= "Ürün fiyati gecersiz";
+        public static string CarDailyPriceInvalid= "Arac fiyati gecersiz";
 
         public static string CarCanNotListedByColorId = "ColorId kayitli degil";
 

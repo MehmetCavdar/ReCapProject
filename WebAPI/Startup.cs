@@ -31,18 +31,22 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<ICarService, CarManager>();  // bu newleme gerektiginde newler
-            services.AddSingleton<ICarDal, EfCarDal>();
-            services.AddSingleton<IColorService, ColorManager>();  // bu newleme gerektiginde newler
-            services.AddSingleton<IColorDal, EfColorDal>();
-            services.AddSingleton<IBrandService, BrandManager>();  // bu newleme gerektiginde newler
-            services.AddSingleton<IBrandDal, EfBrandDal>();
-            services.AddSingleton<IRentalService, RentalManager>();  // bu newleme gerektiginde newler
-            services.AddSingleton<IRentalDal, EfRentalDal>();
-            services.AddSingleton<IUserService, UserManager>();  // bu newleme gerektiginde newler
-            services.AddSingleton<IUserDal, EfUserDal>();
-            services.AddSingleton<ICustomerService, CustomerManager>();  // bu newleme gerektiginde newler
-            services.AddSingleton<ICustomerDal, EfCustomerDal>();
+
+            // AUTOFAC YAPILANMASI NEDENIYLE IHTIYACIMIZ KALMADI
+
+
+            //services.AddSingleton<ICarService, CarManager>();  // bu newleme gerektiginde newler
+            //services.AddSingleton<ICarDal, EfCarDal>();
+            //services.AddSingleton<IColorService, ColorManager>();  // bu newleme gerektiginde newler
+            //services.AddSingleton<IColorDal, EfColorDal>();
+            //services.AddSingleton<IBrandService, BrandManager>();  // bu newleme gerektiginde newler
+            //services.AddSingleton<IBrandDal, EfBrandDal>();
+            //services.AddSingleton<IRentalService, RentalManager>();  // bu newleme gerektiginde newler
+            //services.AddSingleton<IRentalDal, EfRentalDal>();
+            //services.AddSingleton<IUserService, UserManager>();  // bu newleme gerektiginde newler
+            //services.AddSingleton<IUserDal, EfUserDal>();
+            //services.AddSingleton<ICustomerService, CustomerManager>();  // bu newleme gerektiginde newler
+            //services.AddSingleton<ICustomerDal, EfCustomerDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

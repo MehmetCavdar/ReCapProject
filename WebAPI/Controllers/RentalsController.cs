@@ -1,4 +1,6 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,12 +17,14 @@ namespace WebAPI.Controllers
     {
 
         IRentalService _rentalService;
+        
 
         public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
         }
 
+ 
 
         [HttpGet("getall")]
         public IActionResult GetAll()

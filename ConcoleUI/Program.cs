@@ -13,10 +13,10 @@ namespace ConsoleUI
 
 
 
-            //TestRentalSuccess(2);
-            //TestRentalManager();
+            TestRentalSuccess(2);
+            TestRentalManager();
 
-            TestGetByBrandId(9);
+           // TestGetByBrandId(9);
 
             //CarTest();
 
@@ -35,7 +35,7 @@ namespace ConsoleUI
 
 
 
-        private static void TestRentalSuccess( int arac)
+        private static void TestRentalSuccess(int arac)
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             var result = rentalManager.CheckReturnDate(arac);
@@ -73,7 +73,7 @@ namespace ConsoleUI
 
                 foreach (var rental in result.Data)
                 {
-                    Console.WriteLine(rental.CarId + "  --->  " + rental.CustomerId +  "   ----> "+ rental.RentDate +  " ------>" + rental.ReturnDate);
+                    Console.WriteLine(rental.CarId + "  --->  " + rental.CustomerId + "   ----> " + rental.RentDate + " ------>" + rental.ReturnDate);
                 }
                 Console.WriteLine("-------------------------");
                 Console.WriteLine(result.Message);
@@ -153,7 +153,7 @@ namespace ConsoleUI
                 Console.WriteLine("--------     -------    ---------      --------          -----------            ------------");
                 foreach (var car in result.Data)
                 {
-            Console.WriteLine(car.CarId + "      -   " + car.BrandId + "   -   " + car.ColorId + "      -   " + car.ModelYear +"    -    " + car.Descriptions + "     ---> " + car.DailyPrice + " TL");
+                    Console.WriteLine(car.CarId + "      -   " + car.BrandId + "   -   " + car.ColorId + "      -   " + car.ModelYear + "    -    " + car.Descriptions + "     ---> " + car.DailyPrice + " TL");
                 }
                 Console.WriteLine("-------------------------");
                 Console.WriteLine(result.Message);
@@ -175,12 +175,12 @@ namespace ConsoleUI
             {
                 Console.WriteLine("-------------------------");
                 Console.WriteLine("DTO ile Joint Tablo");
-            foreach (var car in result.Data)
-            {
-                Console.WriteLine(car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
-            }
-            Console.WriteLine("-------------------------");
-             Console.WriteLine(result.Message);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
+                }
+                Console.WriteLine("-------------------------");
+                Console.WriteLine(result.Message);
             }
             else
             {
@@ -193,14 +193,14 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetByDailyPrice(min, max);
-             int a = 0;
+            int a = 0;
             if (result.Success == true)
             {
                 Console.WriteLine("-------------------------");
-                Console.WriteLine("Günlük Kiralama Bedeli  " + min + "-" + max + "  arasinda olan " +  result.Data.Count + " adet arac bulundu");
+                Console.WriteLine("Günlük Kiralama Bedeli  " + min + "-" + max + "  arasinda olan " + result.Data.Count + " adet arac bulundu");
                 foreach (var car in result.Data)
                 {
-                    a = a + 1;                
+                    a = a + 1;
                     Console.WriteLine(a + ".ürün:" + car.ModelYear + " -" + car.Descriptions + "  ---> " + car.DailyPrice + " TL");
                 }
                 Console.WriteLine("-------------------------");
@@ -230,7 +230,7 @@ namespace ConsoleUI
                     Console.WriteLine(color.ColorId + "   " + color.ColorName);
                 }
                 Console.WriteLine("-------------------------");
-                 Console.WriteLine(result.Message);
+                Console.WriteLine(result.Message);
             }
             else
             {
@@ -245,16 +245,16 @@ namespace ConsoleUI
             var result = brandManager.GetAll();
             if (result.Success == true)
             {
-             Console.WriteLine("-------------------------");
-             Console.WriteLine("------ARAÇ MARKA ID VE MARKA ADI BİLGİSİ------");
-             Console.WriteLine("---------------------------------------------");
-             Console.WriteLine("Marka Id     Marka Adı");
-             Console.WriteLine("--------     ---------");
-            foreach (var brand in result.Data)
-            {
-                Console.WriteLine(brand.BrandId + "       --->  " + brand.BrandName);
-            }
-            Console.WriteLine("-------------------------");
+                Console.WriteLine("-------------------------");
+                Console.WriteLine("------ARAÇ MARKA ID VE MARKA ADI BİLGİSİ------");
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine("Marka Id     Marka Adı");
+                Console.WriteLine("--------     ---------");
+                foreach (var brand in result.Data)
+                {
+                    Console.WriteLine(brand.BrandId + "       --->  " + brand.BrandName);
+                }
+                Console.WriteLine("-------------------------");
                 Console.WriteLine(result.Message);
             }
             else
