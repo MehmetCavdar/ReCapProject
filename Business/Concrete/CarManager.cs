@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Text;
 using Core.Utilities.Results;  // eklendi 10.02 10.ders
 using Business.Constants;      // eklendi 10.02 10 ders
+using FluentValidation;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 
 namespace Business.Concrete
 {
@@ -22,13 +25,7 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-
-            if (car.DailyPrice <= 0)
-            {
-                return new ErrorResult(Messages.CarDailyPriceInvalid);
-            }
-
-            Console.WriteLine("ekliyorummmmm");
+            ValidationTool.Validate(new CarValidator(), car);
 
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
