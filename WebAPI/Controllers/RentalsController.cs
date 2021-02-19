@@ -15,16 +15,12 @@ namespace WebAPI.Controllers
     [ApiController]
     public class RentalsController : ControllerBase
     {
-
         IRentalService _rentalService;
-        
-
+     
         public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
         }
-
- 
 
         [HttpGet("getall")]
         public IActionResult GetAll()
@@ -37,6 +33,13 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _rentalService.GetById(id);
+            if (result.Success) { return Ok(result); }
+            return BadRequest();
+        }
 
         [HttpPost("add")]
         public IActionResult Add(Rental rental) 			//DİKKAT
@@ -48,6 +51,27 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(Rental rental)
+        {
+            var result = _rentalService.Delete(rental);
+            if (result.Success) { return Ok(result); }
+            return BadRequest();
+        }
+
+        [HttpPost("update")]
+        public IActionResult Update(Rental rental)
+        {
+            var result = _rentalService.Update(rental);
+            if (result.Success) { return Ok(result); }
+            return BadRequest();
+        }
+
+
+
+
+
 
     }
 }

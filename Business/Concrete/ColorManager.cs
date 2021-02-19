@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Text;
 using Core.Utilities.Results;  // eklendi 10.02 10.ders
 using Business.Constants;      // eklendi 10.02 10 ders
+using Core.Aspects.Autofac.Validation;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 
 namespace Business.Concrete
 {
@@ -18,7 +21,7 @@ namespace Business.Concrete
             _colorDal = color;
         }
 
-
+        [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
@@ -31,7 +34,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ColorDeleted);
         }
 
-
+        [ValidationAspect(typeof(ColorValidator))]
         public IResult Update(Color color)
         {
             _colorDal.Update(color);
@@ -42,7 +45,12 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
         }
+        public IDataResult<Color> GetById(int id)
+        {
 
- 
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId== id));
+
+        }
+
     }
 }

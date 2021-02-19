@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Text;
 using Core.Utilities.Results;  // eklendi 10.02 10.ders
 using Business.Constants;      // eklendi 10.02 10 ders
+using Core.Aspects.Autofac.Validation;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 
 namespace Business.Concrete
 {
@@ -18,17 +21,21 @@ namespace Business.Concrete
         }
 
 
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
-            if (brand.BrandName.Length < 2)
-            {
-                return new ErrorResult(Messages.BrandInvalid);
-            }
-            else
-            {
+
             _brandDal.Add(brand);
-                return new SuccessResult(Messages.BrandAdded);              
-            }
+            return new SuccessResult(Messages.BrandAdded);
+        }
+
+
+        [ValidationAspect(typeof(BrandValidator))]
+        public IResult Update(Brand brand)
+        {
+
+            _brandDal.Update(brand);
+            return new SuccessResult(Messages.BrandUpdated);
         }
 
         public IResult Delete(Brand brand)
@@ -37,23 +44,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.BrandDeleted);
         }
 
-        public IResult Update(Brand brand)
-        {
-
-            if (brand.BrandName.Length < 2)
-            {
-                return new ErrorResult(Messages.BrandInvalid);
-            }
-            else
-            {
-                _brandDal.Update(brand);
-                return new SuccessResult(Messages.BrandUpdated);
-            }
-        }
-
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>> (_brandDal.GetAll(),Messages.BrandListed);
+        }
+
+        public IDataResult<Brand> GetById(int id)
+        {
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id));
         }
 
     }

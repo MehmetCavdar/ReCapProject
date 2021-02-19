@@ -52,6 +52,15 @@ namespace Business.Constants
 
         public static string RentalAddedError = "Aracın kiraya verilebilmesi için önce teslim edilmesi gerekir.";
 
+        public static string RentalDeleted ="Kiralik arac Bilgisi silindi";
+
+        public static string RentalUpdated = "Kiralik arac Bilgisi güncellendi";
+
+        public static string RentalUpdatedReturnDateError= "Kiralik arac Bilgisi dönüs tarihi hatasi";
+
+        public static string RentalUpdatedReturnDate = "Kiralik arac Bilgisi Dönus tarihi güncellendi";
+
+
         public static string CustomerAdded = "Müsteri eklendi";
 
         public static string CustomerDeleted = "Müsteri silindi";
@@ -65,7 +74,6 @@ namespace Business.Constants
         public static string UserDeleted = "Kullanici silindi";
 
         public static string UserUpdated  = "Kullanici güncellendi";
-
 
 
     }

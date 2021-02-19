@@ -9,6 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Core.Aspects.Autofac.Validation;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
+
 
 
 namespace Business.Concrete
@@ -47,8 +51,6 @@ namespace Business.Concrete
         }
 
 
-
-
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
@@ -65,11 +67,40 @@ namespace Business.Concrete
             var updatedRental = result.LastOrDefault();  //dikkat
             if (updatedRental.ReturnDate != null)
             {
-                return new ErrorResult();
+                return new ErrorResult(Messages.RentalUpdatedReturnDateError);
             }
             updatedRental.ReturnDate = DateTime.Now;
             _rentalDal.Update(updatedRental);
-            return new SuccessResult();
+            return new SuccessResult(Messages.RentalUpdatedReturnDate);
         }
+
+
+
+        public IDataResult<Rental> GetById(int id)
+        {
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id));
+        }
+
+        public IResult Delete(Rental rental)
+        {
+            _rentalDal.Delete(rental);
+            return new SuccessResult(Messages.RentalDeleted);
+        }
+
+
+        public IResult Update(Rental rental)
+        {
+            _rentalDal.Update(rental);
+            return new SuccessResult(Messages.RentalUpdated);
+        }
+
+
+
+
+
+
+
+
+
     }
 }

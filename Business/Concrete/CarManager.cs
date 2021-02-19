@@ -59,7 +59,7 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetAll()
         {
 
-            if (DateTime.Now.Hour == 22)  // saat kismi 22 ise hata döndür (denemk icin)
+            if (DateTime.Now.Hour == 3)  // saat kismi 22 ise hata döndür (denemk icin)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
@@ -102,6 +102,13 @@ namespace Business.Concrete
             }
             return new ErrorDataResult<List<CarDetailDto>>(Messages.CarCanNotListedByColorId);
         }
+
+        public IDataResult<Car> GetById(int id)
+        {
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
+        }
+
+
 
     }
 }

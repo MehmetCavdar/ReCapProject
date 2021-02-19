@@ -14,6 +14,8 @@ namespace Business.Abstract
         IResult Delete(Car car);
 
 
+        IDataResult<Car> GetById(int id);
+
         IDataResult<List<Car>> GetAll();
         IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max);  //ekledik 9.ders ödevi
         IDataResult<List<CarDetailDto>> GetCarDetails();
