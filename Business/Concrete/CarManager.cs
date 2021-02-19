@@ -10,6 +10,7 @@ using Business.Constants;      // eklendi 10.02 10 ders
 using FluentValidation;
 using Business.ValidationRules.FluentValidation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Aspects.Autofac.Validation;
 
 namespace Business.Concrete
 {
@@ -23,14 +24,22 @@ namespace Business.Concrete
         }
 
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            ValidationTool.Validate(new CarValidator(), car);
-
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
 
         }
+
+
+
+
+
+
+
+
+
 
         public IResult Delete(Car car)
         {
