@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
             _carImageService = carImageService;
         }
 
-        [HttpGet]
+        [HttpGet("getall")]
         public IActionResult GetAll()
         {
             var result = _carImageService.GetAll();
@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult Add([FromForm] CarImage carImage)
         {
             var result = _carImageService.Add(carImage);
@@ -65,7 +65,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update([FromForm] CarImage carImage)
         {
             var result = _carImageService.Update(carImage);
@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
+        [HttpDelete ("delete")]
         public IActionResult Delete([FromForm] CarImage carImage)
         {
             var result = _carImageService.Delete(carImage);

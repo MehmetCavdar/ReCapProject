@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.BusinessRules;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -20,9 +22,11 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
+
+        [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(CarImage carImage)
         {
-            var result = BusinessRule.Run(CheckCarImageLimit(carImage.CarId));
+            IResult result = BusinessRule.Run(CheckCarImageLimit(carImage.CarId));
 
             if (result != null)
                 return result;
@@ -68,8 +72,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(defaultImage);
         }
 
+
+        [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(CarImage carImage)
         {
+
+            IResult result = BusinessRule.Run(CheckCarImageLimit(carImage.CarId));
+
+            if (result != null)
+                return result;
+
             DeleteImage(carImage.Id);
             SaveImage(carImage);
 
