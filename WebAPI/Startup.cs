@@ -61,6 +61,8 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseAuthentication(); // ekledik 14. ders
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
