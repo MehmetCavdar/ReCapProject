@@ -11,6 +11,8 @@ using FluentValidation;
 using Business.ValidationRules.FluentValidation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Aspects.Autofac.Validation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
@@ -25,6 +27,7 @@ namespace Business.Concrete
 
 
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             _carDal.Add(car);
@@ -33,14 +36,7 @@ namespace Business.Concrete
         }
 
 
-
-
-
-
-
-
-
-
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -48,6 +44,7 @@ namespace Business.Concrete
         }
 
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
@@ -55,7 +52,8 @@ namespace Business.Concrete
         }
 
 
-
+        [CacheAspect]
+        [PerformanceAspect(5)]  // bu metotun çalışması 5 saniyeyi geçerse uyarı verir
         public IDataResult<List<Car>> GetAll()
         {
 
@@ -70,6 +68,7 @@ namespace Business.Concrete
 
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
         {
             // sadece secilen fiyat araligindaki ürünler listelenecek
@@ -81,6 +80,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.DetailedCarListed); // newlemeyi unutme
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId)
         {
             var result = _carDal.GetCarDetails(c => c.BrandId == brandId);
@@ -92,6 +92,7 @@ namespace Business.Concrete
             return new ErrorDataResult<List<CarDetailDto>>(Messages.CarCanNotListedByBrandId);
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarsByColorId(int colorId)
         {
             var result = _carDal.GetCarDetails(c => c.ColorId == colorId);
@@ -103,10 +104,12 @@ namespace Business.Concrete
             return new ErrorDataResult<List<CarDetailDto>>(Messages.CarCanNotListedByColorId);
         }
 
+        [CacheAspect]
         public IDataResult<Car> GetById(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
         }
+
 
 
 
